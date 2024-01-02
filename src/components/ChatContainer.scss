@@ -1,0 +1,51 @@
+.messages {
+    height: auto;
+    min-height: calc(100% - 128px);
+    max-height: calc(100% - 128px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    ul {
+        li {
+            display: inline-block;
+            clear: both;
+            margin: 3px 15px;
+            width: calc(100% - 25px);
+            font-size: 0.9em;
+            @media screen and (max-width: 735px)
+            {
+                max-height: calc(100% - 105px);
+            }
+            &.sent {
+                div {
+                    float: left;
+                    margin: 1px 4px 0 0;
+                }
+                p {
+                    float: left;
+                }
+            }
+            &.replies {
+                div {
+                    float: right;
+                    margin: 1px 0 0 4px;
+                }
+                p {
+                    float: right;
+                }
+            }
+            p {
+                word-break: break-word !important;
+                display: inline-block;
+                padding: 5px 15px !important;
+                border-radius:10px !important;
+                max-width: 60% !important;
+                line-height: 20px !important;
+            }
+            span{
+                font-size: 13px;
+                margin-left: 15px;
+                color: #888888;
+            }
+        }
+    }
+}

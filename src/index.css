@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+::-webkit-scrollbar {
+    width: 3px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #adadad;
+  }
+  *>*{
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    /* background-image: url(assets/image1.jpg); */
+    background-color: #caf3db;
+    background-size: cover;
+    /* style={{backgroundColor:"#caf3db",width:'100%'}} */
+}

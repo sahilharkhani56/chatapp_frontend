@@ -1,0 +1,13 @@
+.selected{
+    /* background: #c8e6c9 !important; */
+    background: #caf3db !important;
+    backdrop-filter: blur(10px);
+    /* background: rgb(91, 228, 155) !important; */
+   
+}
+.selected > div > span{
+    color: rgb(0, 167, 111) !important;
+}
+.allContect:hover{
+    background-color: #f3f3f3;
+}

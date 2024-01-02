@@ -1,0 +1,11 @@
+.userprofile{
+    /* border: solid 2px; */
+    border-radius: 50px;
+    /* border-color: rgb(0, 0, 0); */
+    cursor: pointer;
+}
+.userprofile:hover{
+    background-color: #f3f3f3;
+        backdrop-filter: blur(10px);
+
+}
