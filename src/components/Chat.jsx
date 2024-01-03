@@ -14,7 +14,7 @@ const Chat = () => {
     const token=localStorage.getItem('token')
     let {userId}=jwt_decode(token);
     if(userId!==undefined){
-      socket = socketIO.connect('http://localhost:8080');
+      socket = socketIO.connect('https://chatapp-backend-relv.onrender.com');
     }
     socket.emit('newUser', userId);
   },[])

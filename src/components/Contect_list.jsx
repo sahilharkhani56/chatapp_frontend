@@ -9,7 +9,7 @@ const Contect_list = (props) => {
   const [dataa, setData] = useState([]);
   const [activeUser,setActiveUser]=useState();
   const [currentSelected, setCurrentSelected] = useState([]);
-  const url = "http://localhost:8080/api/allUsers";
+  const url = "https://chatapp-backend-relv.onrender.com/api/allUsers";
   const [{ isLoading, apiData, serverError }] = useFetch();
   const fetchInfo = async () => {
     if (url && apiData?._id) {

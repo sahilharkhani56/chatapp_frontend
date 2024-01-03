@@ -8,8 +8,8 @@ import "./ChatContainer.scss";
 import { Avatar } from "@mui/material";
 import axios, { all } from "axios";
 import "../styles/ChatContainer.css";
-const addMessageUrl = "http://localhost:8080/api/addMessage";
-const getMessageUrl = "http://localhost:8080/api/getMessage";
+const addMessageUrl = "https://chatapp-backend-relv.onrender.com/api/addMessage";
+const getMessageUrl = "https://chatapp-backend-relv.onrender.com/api/getMessage";
 export const Chat_container = (props) => {
   const [{ isLoading, apiData, serverError }] = useFetch();
   const [chatmessage, setMessage] = useState("");
