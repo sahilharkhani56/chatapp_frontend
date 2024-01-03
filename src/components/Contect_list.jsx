@@ -72,8 +72,8 @@ const Contect_list = (props) => {
       </div>
       {/* <Avatar sx={{ bgcolor:'#blue' }} src={avatar}>NA</Avatar> */}
       <center className="overflow-y-scroll   h-[calc(100%-12px)] ">
-        {/* {filteredList.map((dataObj, index) => { */}
-        {dataa.map((dataObj, index) => {
+        {filteredList.map((dataObj, index) => {
+        {/* {dataa.map((dataObj, index) => { */}
           return (
             <div
               className={`allContect w-11/12 bg-gray-10 h-16 m-auto mb-2 rounded-md flex ${

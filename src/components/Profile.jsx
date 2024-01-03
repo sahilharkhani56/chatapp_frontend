@@ -70,7 +70,7 @@ export default function Profile() {
             <div className="profile flex justify-center py-3">
               <label htmlFor="profile">
               <img
-                src={apiData?.profile||file || avatar}
+                src={file||apiData?.profile || avatar}
                 className={styles.profile_img}
                 alt="image" 
               ></img>
