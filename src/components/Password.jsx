@@ -65,7 +65,7 @@ export default function Password() {
               <input
                 {...formik.getFieldProps("password")}
                 className={styles.textbox}
-                type="text"
+                type="password"
                 placeholder="Password"
               ></input>
               <button type="submit" className={styles.btn}>
