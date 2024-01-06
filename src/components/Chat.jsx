@@ -6,7 +6,6 @@ import socketIO from 'socket.io-client';
 let socket;
 const Chat = () => {
   const [data,setData]=useState([]);
-  const [message,setMessage]=useState();
   const pull_data = (data) => {
     setData(data)
   }
@@ -14,10 +13,12 @@ const Chat = () => {
     const token=localStorage.getItem('token')
     let {userId}=jwt_decode(token);
     if(userId!==undefined){
-      socket = socketIO.connect('https://chatapp-backend-relv.onrender.com');
+      socket = socketIO.connect(`${import.meta.env.VITE_BACKEND_URI}`);
+      socket.emit('newUser', userId);
+
     }
-    socket.emit('newUser', userId);
   },[])
+
   return (
     <>
       <div className="flow-root h-screen w-100 box-border p-4 border-0 border-gray-900" style={{backgroundColor:"#fff"}}>

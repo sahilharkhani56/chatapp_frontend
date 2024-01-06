@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-axios.defaults.baseURL='https://chatapp-backend-relv.onrender.com'
+axios.defaults.baseURL=`${import.meta.env.VITE_BACKEND_URI}`
 import { getUsername } from "../helper/helper";
 export default function useFetch(query){
     const [getData,setData]= useState({

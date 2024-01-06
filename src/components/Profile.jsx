@@ -8,7 +8,6 @@ import avatar from "../assets/avatar.jpg";
 import { profileValidate } from "../helper/validate";
 import convertToBase64 from '../helper/convert.js'
 import { updateUser } from "../helper/helper";
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 export default function Profile() {
 
   const navigateTo=useNavigate()
@@ -97,6 +96,7 @@ export default function Profile() {
 
           </div>
 
+          </form>
             <div className="text-center py-4">
               <span className="text-gray-500">
                 Come back to chat?{" "}
@@ -105,7 +105,6 @@ export default function Profile() {
                 </button>
               </span>
             </div>
-          </form>
         </div>
       </div>
     </div>

@@ -1,19 +1,16 @@
 import React from "react";
 import "../index.css";
-import avatar from "../assets/avatar.jpg";
-import avatar2 from "../assets/download.png";
 import Contect_list from "./Contect_list";
 import useFetch from "../hooks/fetchhooks.js";
-import { getUsername } from "../helper/helper.jsx";
 import{ Avatar} from "@mui/material";
 import '../styles/sidebar.css'
 import { useNavigate } from "react-router-dom";
+
 const sidebar = (props) => {
   const navigateTo=useNavigate();
-  // const { username } = useAuthStore((state) => state.auth);
   const [{ isLoading, apiData, serverError }] = useFetch();
   const pull_data = (data) => {
-    props.func(data) // LOGS DATA FROM CHILD (My name is Dean Winchester... &)
+    props.func(data) 
   }
   function stringToColor1(string) {
     let hash = 0;

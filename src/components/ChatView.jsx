@@ -40,11 +40,6 @@ const chat_view = (props) => {
       <div className="bg-gray-10 float-right w-[calc(75%-30px)] absolute top-[calc(18px)] right-5 h-16 flex ">
         {props?.data.username!==undefined?(<div className="  w-11/12 h-full flex items-center">
           <div className="profile w-1/12 flex justify-center items-center">
-            {/* <img
-              src={props.data.profile || avatar}
-              className="h-10 w-10  rounded-full  cursor-pointer text-center m-auto "
-              alt="image"
-            ></img> */}
             <Avatar
                   sx={props?.data.username!==undefined?{bgcolor: stringToColor1(props?.data.username)}:{bgcolor: stringToColor1('G')}}
                   src={props?.data.profile}

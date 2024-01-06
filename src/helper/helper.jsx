@@ -2,7 +2,7 @@ import axios from "axios";
 
 import jwt_decode from "jwt-decode";
 // import { Promise } from 'node-fetch';
-axios.defaults.baseURL = "https://chatapp-backend-relv.onrender.com";
+axios.defaults.baseURL = `${import.meta.env.VITE_BACKEND_URI}`;
 // make api request
 
 // get username from token

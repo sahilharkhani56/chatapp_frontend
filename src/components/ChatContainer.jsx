@@ -1,18 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import SendIcon from "@mui/icons-material/Send";
-import { Formik, useFormik } from "formik";
 import useFetch from "../hooks/fetchhooks";
-// import { addMessage } from "../helper/helper";
-import avatar from "../assets/avatar.jpg";
 import "./ChatContainer.scss";
 import { Avatar } from "@mui/material";
-import axios, { all } from "axios";
+import axios from "axios";
 import "../styles/ChatContainer.css";
-const addMessageUrl = "https://chatapp-backend-relv.onrender.com/api/addMessage";
-const getMessageUrl = "https://chatapp-backend-relv.onrender.com/api/getMessage";
+import moment from "moment/moment";
+
+const addMessageUrl = `${import.meta.env.VITE_BACKEND_URI}/api/addMessage`;
+const getMessageUrl = `${import.meta.env.VITE_BACKEND_URI}/api/getMessage`;
 export const Chat_container = (props) => {
   const [{ isLoading, apiData, serverError }] = useFetch();
-  const [chatmessage, setMessage] = useState("");
+  const [currentChatMessage, setCurrentChatMessage] = useState('');
   const [allMessages, setAllMessages] = useState([]);
   const [checker , setChecker] = useState(false);
   const messagesEndRef = useRef(null)
@@ -21,38 +20,59 @@ export const Chat_container = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setChecker(!checker);
-    if (chatmessage.length > 0) {
-      setMessage("");
+    if(currentChatMessage.length===0)return;
+    if (currentChatMessage.length > 0) {
+      setCurrentChatMessage('');
     }
-    await axios.post(addMessageUrl, {
+    const receiver=props?.data._id;
+    
+    const addMessage=await axios.post(addMessageUrl, {
       from: apiData?._id,
       to: props?.data._id,
-      message: chatmessage,
+      message: currentChatMessage,
     });
-    // console.log(props?.data._id);
-    props.socket?.emit('newMessage',   props?.data._id);
-  };
-
-  useEffect(() => {
-    async function getAllMsg() {
-      const response = await axios.post(getMessageUrl, {
-        from: apiData?._id,
-        to: props?.data._id,
-      });
-      setAllMessages(response.data);
-    }
-    // console.log(props.socket);
-    props.socket?.on("messageResponse",(data)=>{
-      getAllMsg();
+    const localTime=addMessage.data.data.createdAt;
+    props.socket?.emit('newMessage', {receiver,currentChatMessage,localTime});
+    console.log(addMessage);
+    var formatedTime=moment(localTime).format('h:mm a');
+    setAllMessages((value)=>{
+      return [...value,{
+        fromSelf:true,
+        message:currentChatMessage,
+        createdAt:formatedTime,
+      }]
     })
-    
-    getAllMsg()
-  }, [apiData, props?.data,props.socket,setAllMessages,setMessage,checker,chatmessage]);
-  
-  useEffect(() => {
-      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-      console.log(setAllMessages);
+    // console.log(props?.data._id);
+  };
+  async function getAllMsg() {
+    const response = await axios.post(getMessageUrl, {
+      from: apiData?._id,
+      to: props?.data._id,
+    });
+    setAllMessages(response.data);
+    console.log(props?.data._id);
+  }
+  useEffect(()=>{
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    props.socket?.on("messageResponse",({currentChatMessage,localTime})=>{
+      var formatedTime=moment(localTime).format('h:mm a');
+      setAllMessages((value)=>{
+        return [...value,{
+          fromSelf:false,
+          message:currentChatMessage,
+          createdAt:formatedTime,
+        }]
+      })
+    })
+    return ()=>{
+      props.socket?.off("messageResponse")
+    }
   },[allMessages])
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    getAllMsg()
+  }, [props?.data,apiData]);
+  
  
 
   function stringToColor1(string) {
@@ -137,8 +157,8 @@ export const Chat_container = (props) => {
           <input
             placeholder="Type a message"
             className="w-11/12 h-14 bg-gray-10 outline-none ml-3 text-lg"
-            onChange={(e) => setMessage(e.target.value)}
-            value={chatmessage}
+            onChange={(e) => setCurrentChatMessage(e.target.value)}
+            value={currentChatMessage}
           ></input>
           <div className="w-1/12 text-center m-auto ">
             <button type="submit" className="sendBtn">

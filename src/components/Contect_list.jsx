@@ -6,30 +6,33 @@ import { getUsername } from "../helper/helper";
 import{ Avatar} from "@mui/material";
 import "../styles/Contect_list.css";
 const Contect_list = (props) => {
-  const [dataa, setData] = useState([]);
-  const [activeUser,setActiveUser]=useState();
+  const [contactData, setContactData] = useState([]);
+  const [activeUser,setActiveUser]=useState([]);
   const [currentSelected, setCurrentSelected] = useState([]);
-  const url = "https://chatapp-backend-relv.onrender.com/api/allUsers";
+  // const url = "https://chatapp-backend-relv.onrender.com/api/allUsers";
+  const url = `${import.meta.env.VITE_BACKEND_URI}/api/allUsers`;
+
+  
   const [{ isLoading, apiData, serverError }] = useFetch();
   const fetchInfo = async () => {
     if (url && apiData?._id) {
       var contects = await axios.get(`${url}/${apiData?._id}`);
-      setData(contects.data);
+      setContactData(contects.data);
     }
   };
 
 
   useEffect(() => {
     fetchInfo();
-    // console.log(dataa);
     props.socket?.on('activeUserResponse', (data) => {
       setActiveUser(data);
     })
+    // console.log(activeUser);
   }, [apiData,props.socket]);
 
   
   var itemList = [];
-  dataa.map((dataObj, index) => {
+  contactData.map((dataObj, index) => {
     itemList.push(dataObj);
   });
   const [filteredList, setFilteredList] = new useState(itemList);
@@ -73,7 +76,7 @@ const Contect_list = (props) => {
       {/* <Avatar sx={{ bgcolor:'#blue' }} src={avatar}>NA</Avatar> */}
       <center className="overflow-y-scroll   h-[calc(100%-12px)] ">
         {filteredList.map((dataObj, index) => {
-        {/* {dataa.map((dataObj, index) => { */}
+        {/* {contactData.map((dataObj, index) => { */}
           return (
             <div
               className={`allContect w-11/12 bg-gray-10 h-16 m-auto mb-2 rounded-md flex ${

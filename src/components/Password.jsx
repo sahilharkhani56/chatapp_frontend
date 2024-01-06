@@ -7,7 +7,6 @@ import avatar from "../assets/avatar.jpg";
 import { passwordValidate } from "../helper/validate";
 import { useAuthStore } from '../store/store.js'
 import useFetch from "../hooks/fetchhooks.js";
-import { getUsername } from "../helper/helper";
 import {login_verifyPassword} from '../helper/helper'
 export default function Password() {
   const navigateTo=useNavigate()
