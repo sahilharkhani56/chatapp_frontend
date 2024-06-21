@@ -9,15 +9,17 @@ const Contect_list = (props) => {
   const [contactData, setContactData] = useState([]);
   const [activeUser,setActiveUser]=useState([]);
   const [currentSelected, setCurrentSelected] = useState([]);
+  const [filteredList, setFilteredList] = new useState([]);
   // const url = "https://chatapp-backend-relv.onrender.com/api/allUsers";
   const url = `${import.meta.env.VITE_BACKEND_URI}/api/allUsers`;
-
+  
   
   const [{ isLoading, apiData, serverError }] = useFetch();
   const fetchInfo = async () => {
     if (url && apiData?._id) {
       var contects = await axios.get(`${url}/${apiData?._id}`);
       setContactData(contects.data);
+      setFilteredList(contects.data)
     }
   };
 
@@ -35,7 +37,6 @@ const Contect_list = (props) => {
   contactData.map((dataObj, index) => {
     itemList.push(dataObj);
   });
-  const [filteredList, setFilteredList] = new useState(itemList);
   // console.log(filteredList);
   const filterBySearch = (event) => {
     const query = event.target.value;
