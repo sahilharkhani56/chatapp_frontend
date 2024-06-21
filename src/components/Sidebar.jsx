@@ -53,8 +53,7 @@ const sidebar = (props) => {
                         ? apiData?.username.split(" ").length > 1
                           ? apiData?.username
                               .split(" ")[0][0]
-                              .toUpperCase() +
-                            apiData?.username.split(" ")[1][0].toUpperCase()
+                              .toUpperCase() 
                           : apiData?.username.split(" ")[0][0].toUpperCase()
                         : "G"}
                     </Avatar>

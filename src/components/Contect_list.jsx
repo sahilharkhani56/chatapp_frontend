@@ -94,8 +94,7 @@ const Contect_list = (props) => {
                   size="lg"   
                 >
                   {dataObj.username.split(" ").length > 1
-                    ? dataObj.username.split(" ")[0][0].toUpperCase() +
-                      dataObj.username.split(" ")[1][0].toUpperCase()
+                    ? dataObj.username.split(" ")[0][0].toUpperCase() 
                     : dataObj.username.split(" ")[0][0].toUpperCase()}
                 </Avatar>
               </div>

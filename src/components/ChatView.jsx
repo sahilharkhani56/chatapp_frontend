@@ -46,8 +46,7 @@ const chat_view = (props) => {
                   size="lg"   
                 >
                   {props?.data.username!==undefined?(props?.data.username.split(" ").length > 1
-                    ? props?.data.username.split(" ")[0][0].toUpperCase() +
-                    props?.data.username.split(" ")[1][0].toUpperCase()
+                    ? props?.data.username.split(" ")[0][0].toUpperCase()
                     : props?.data.username.split(" ")[0][0].toUpperCase()):'G'}
                 </Avatar>
                 

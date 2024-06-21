@@ -6,6 +6,6 @@
 }
 .userprofile:hover{
     background-color: #f3f3f3;
-        backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 
 }
